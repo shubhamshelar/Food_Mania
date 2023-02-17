@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodmania/screens/recent_screen.dart';
 
+import '../constants/constants.dart';
+import 'favorite_screen.dart';
 import 'home_screen.dart';
 
 class DriverPage extends StatefulWidget {
@@ -26,17 +28,16 @@ class _DriverPageState extends State<DriverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Bottom Navigation Bar'),
-      ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: secondary,
+        fixedColor: primary,
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            label: 'Home',
+            icon: new Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.favorite),
@@ -44,7 +45,7 @@ class _DriverPageState extends State<DriverPage> {
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.history),
-            label: 'History',
+            label: 'Recent',
           ),
         ],
       ),
