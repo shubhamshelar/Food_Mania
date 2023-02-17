@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:foodmania/constants/constants.dart';
+import 'package:foodmania/screens/list_screen.dart';
+import 'package:foodmania/utility/constants.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../widgets/search_bar.dart';
+
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   String? recipe;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +22,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              const Text(
                 "Hello Chef,",
                 style: TextStyle(
                   color: primary,
@@ -21,8 +30,8 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   "What's on your mind!",
                   style: TextStyle(
@@ -35,44 +44,33 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: black1,
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: TextField(
-                    cursorColor: black2,
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        fillColor: black1,
-                        prefixIcon: Icon(Icons.search, color: black2),
-                        hintText: "'Pasta..', 'Biryani..', ..",
-                        hintStyle: TextStyle(color: black2, fontSize: 20.0)),
-                    onChanged: (newValue) {
-                      recipe = newValue;
-                    },
-                  ),
+                child: SearchBar(
+                  recipe: recipe,
                 ),
               ),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ListScreen()));
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(13.0),
+                      )),
+                      backgroundColor:
+                          const MaterialStatePropertyAll<Color>(primary),
+                      foregroundColor:
+                          const MaterialStatePropertyAll<Color>(secondary)),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 28.0),
                     child: Text(
                       "Search",
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w500),
                     ),
                   ),
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      )),
-                      backgroundColor: MaterialStatePropertyAll<Color>(primary),
-                      foregroundColor:
-                          MaterialStatePropertyAll<Color>(secondary)),
                 ),
               )
             ],

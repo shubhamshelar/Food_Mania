@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodmania/screens/recent_screen.dart';
 
-import '../constants/constants.dart';
+import '../utility/constants.dart';
 import 'favorite_screen.dart';
 import 'home_screen.dart';
 

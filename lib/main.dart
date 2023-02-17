@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodmania/screens/driver_page.dart';
+import 'package:foodmania/screens/list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'OpenSans',
       ),
-      home: DriverPage(),
+      home: ListScreen(),
     );
   }
 }
