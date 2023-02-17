@@ -45,36 +45,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
                 child: SearchBar(
-                  recipe: recipe,
+                  setRecipe: (String? newValue) {
+                    recipe = newValue;
+                  },
                 ),
               ),
               Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ListScreen()));
-                  },
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      )),
-                      backgroundColor:
-                          const MaterialStatePropertyAll<Color>(primary),
-                      foregroundColor:
-                          const MaterialStatePropertyAll<Color>(secondary)),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 28.0),
-                    child: Text(
-                      "Search",
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
+                child: SearchButton(context),
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  ElevatedButton SearchButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        //print(recipe);
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ListScreen(query: recipe)));
+      },
+      style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(13.0),
+          )),
+          backgroundColor: const MaterialStatePropertyAll<Color>(primary),
+          foregroundColor: const MaterialStatePropertyAll<Color>(secondary)),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 28.0),
+        child: Text(
+          "Search",
+          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
         ),
       ),
     );

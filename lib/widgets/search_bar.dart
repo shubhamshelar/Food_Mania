@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../utility/constants.dart';
 
 class SearchBar extends StatelessWidget {
-  String? recipe;
-  SearchBar({super.key, this.recipe});
+  final Function setRecipe;
+  SearchBar({super.key, required this.setRecipe});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SearchBar extends StatelessWidget {
             hintText: "'Pasta..', 'Biryani..', ..",
             hintStyle: TextStyle(color: black2, fontSize: 20.0)),
         onChanged: (newValue) {
-          recipe = newValue;
+          setRecipe(newValue);
         },
       ),
     );
